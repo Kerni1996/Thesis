@@ -1,0 +1,37 @@
+<http://orcid.org/0000-0001-9897-0870> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xmlns.com/foaf/0.1/Person> <person>.
+<http://orcid.org/0000-0001-9897-0870> <http://example.com/creatorName> "Sifat, RIDWAN ISLAM"^^<http://www.w3.org/2001/XMLSchema#string> <person>.
+<http://orcid.org/0000-0001-9897-0870> <http://example.com/affiliation> "Bangladesh University of Professionals"^^<http://www.w3.org/2001/XMLSchema#string> <person>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/dc/dcmitype/Dataset> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/identifier> "https://doi.org/10.17026/dans-xqs-7r6p"^^<http://www.w3.org/2001/XMLSchema#anyURI> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/creator> "Sifat, RIDWAN ISLAM"^^<http://www.w3.org/2001/XMLSchema#string> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/identifier> "http://orcid.org/0000-0001-9897-0870"^^<http://www.w3.org/2001/XMLSchema#anyURI> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <sc:affiliation> "Bangladesh University of Professionals"^^<http://www.w3.org/2001/XMLSchema#string> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/title> "Effects of COVID-19 on Livelihood, Health and Psychology of Hijra (Transgender) Population: Insights from Bangladesh"@en <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/publisher> "Data Archiving and Networked Services (DANS)"^^<http://www.w3.org/2001/XMLSchema#string> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://example.com/publicationYear> "2021"^^<http://www.w3.org/2001/XMLSchema#gYear> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/subject> "Social sciences"@en <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/subject> "Focus Group Discussion"@en <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/subject> "Social Problems"@en <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/subject> "COVID-19"@en <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/subject> "Mental and Health care"@en <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/subject> "Hijra"@en <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/subject> "Transgender"@en <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/subject> "Temporal coverage: 2020"@en <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/contributor> "Sifat, RIDWAN ISLAM"^^<http://www.w3.org/2001/XMLSchema#string> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/contributor> "Ridwan Islam Sifat (Bangladesh University of Professionals)"^^<http://www.w3.org/2001/XMLSchema#string> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/contributor> "http://orcid.org/Sifat, RIDWAN ISLAM"^^<http://www.w3.org/2001/XMLSchema#anyURI> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/contributor> "http://orcid.org/Ridwan Islam Sifat (Bangladesh University of Professionals)"^^<http://www.w3.org/2001/XMLSchema#anyURI> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://example.com/contributorAffiliation> "Bangladesh University of Professionals"^^<http://www.w3.org/2001/XMLSchema#string> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/language> "en"^^<http://www.w3.org/2001/XMLSchema#string> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/type> "Dataset"^^<http://www.w3.org/2001/XMLSchema#string> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://example.com/URN> "urn:nbn:nl:ui:13-5x-tyla"^^<http://www.w3.org/2001/XMLSchema#string> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://example.com/DMO_ID> "easy-dataset:204554"^^<http://www.w3.org/2001/XMLSchema#string> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/format> "application/pdf"^^<http://www.w3.org/2001/XMLSchema#string> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/rights> "info:eu-repo/semantics/openAccess"^^<http://www.w3.org/2001/XMLSchema#string> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/rights> "License: http://creativecommons.org/publicdomain/zero/1.0"^^<http://www.w3.org/2001/XMLSchema#string> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/description> "Background: The COVID-19 lockdown in Bangladesh has left hijra individuals at an increased risk of poverty and food insecurity due to the economic crisis. The lack of healthcare facilities and lack of awareness raises the looming fear of the budding influence of COVID-19 among the hijra population. COVID-19 challenges the fundamental foundation of the public health system, and now the hijra group is out of the system because of stigma and discrimination. \nMethods: This article features three Focus Group Discussions (FGDs) conducted by 23 respondents about their experience during the COVID-19 Pandemic. \nObjectives: The following research aimed to understand the health, mental stress, social and economic effects on the lives of deprived and marginalized hijra people in Bangladesh of the COVID-19 lockdown. However, in the aftermath of the pandemic, their disadvantaged and socially excluded status makes hijra population more vulnerable to being affected by the virus and facing the economic and social impacts. \nResults: The results reflect the effect of COVID-19 in terms of social, health care and mental health problems on the hijra community in Bangladesh. \nConclusion: The conclusion also presents valuable recommendations for policy practitioners during the COVID-19 situation to support the hijra community. Hijra people are assumed to suffer under the severity of the pandemic even more than the general population due to the intersections between their status as a vulnerable social group, and their high amount of medical risk factors. The COVID-19 pandemic can potentiate these vulnerabilities, add new challenges for hijra individuals, leading to devastating consequences, like severe physical, and mental health issues."@en <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/location> "Bangladesh"^^<http://www.w3.org/2001/XMLSchema#string> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/dateSubmitted> "2021-03-25"^^<http://www.w3.org/2001/XMLSchema#date> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/created> "2021-03-25"^^<http://www.w3.org/2001/XMLSchema#date> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/available> "2021-03-25"^^<http://www.w3.org/2001/XMLSchema#date> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://example.com/hasContributor> <http://orcid.org/0000-0001-9897-0870> <record>.

@@ -1,0 +1,37 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix sd: <http://www.w3.org/ns/sparql-service-description#>.
+@prefix dc: <http://purl.org/dc/terms/>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix ex: <http://example.com/>.
+
+<person> {
+<http://orcid.org/0000-0001-9897-0870> a foaf:Person;
+    ex:creatorName "Sifat, RIDWAN ISLAM"^^xsd:string;
+    ex:affiliation "Bangladesh University of Professionals"^^xsd:string
+}
+<record> {
+<oai:easy.dans.knaw.nl:easy-dataset:204554> a <http://purl.org/dc/dcmitype/Dataset>;
+    dc:identifier "https://doi.org/10.17026/dans-xqs-7r6p"^^xsd:anyURI;
+    dc:creator "Sifat, RIDWAN ISLAM"^^xsd:string;
+    dc:identifier "http://orcid.org/0000-0001-9897-0870"^^xsd:anyURI;
+    <sc:affiliation> "Bangladesh University of Professionals"^^xsd:string;
+    dc:title "Effects of COVID-19 on Livelihood, Health and Psychology of Hijra (Transgender) Population: Insights from Bangladesh"@en;
+    dc:publisher "Data Archiving and Networked Services (DANS)"^^xsd:string;
+    ex:publicationYear "2021"^^xsd:gYear;
+    dc:subject "Social sciences"@en, "Focus Group Discussion"@en, "Social Problems"@en, "COVID-19"@en, "Mental and Health care"@en, "Hijra"@en, "Transgender"@en, "Temporal coverage: 2020"@en;
+    dc:contributor "Sifat, RIDWAN ISLAM"^^xsd:string, "Ridwan Islam Sifat (Bangladesh University of Professionals)"^^xsd:string, "http://orcid.org/Sifat, RIDWAN ISLAM"^^xsd:anyURI, "http://orcid.org/Ridwan Islam Sifat (Bangladesh University of Professionals)"^^xsd:anyURI;
+    ex:contributorAffiliation "Bangladesh University of Professionals"^^xsd:string;
+    dc:language "en"^^xsd:string;
+    dc:type "Dataset"^^xsd:string;
+    ex:URN "urn:nbn:nl:ui:13-5x-tyla"^^xsd:string;
+    ex:DMO_ID "easy-dataset:204554"^^xsd:string;
+    dc:format "application/pdf"^^xsd:string;
+    dc:rights "info:eu-repo/semantics/openAccess"^^xsd:string, "License: http://creativecommons.org/publicdomain/zero/1.0"^^xsd:string;
+    dc:description "Background: The COVID-19 lockdown in Bangladesh has left hijra individuals at an increased risk of poverty and food insecurity due to the economic crisis. The lack of healthcare facilities and lack of awareness raises the looming fear of the budding influence of COVID-19 among the hijra population. COVID-19 challenges the fundamental foundation of the public health system, and now the hijra group is out of the system because of stigma and discrimination. \nMethods: This article features three Focus Group Discussions (FGDs) conducted by 23 respondents about their experience during the COVID-19 Pandemic. \nObjectives: The following research aimed to understand the health, mental stress, social and economic effects on the lives of deprived and marginalized hijra people in Bangladesh of the COVID-19 lockdown. However, in the aftermath of the pandemic, their disadvantaged and socially excluded status makes hijra population more vulnerable to being affected by the virus and facing the economic and social impacts. \nResults: The results reflect the effect of COVID-19 in terms of social, health care and mental health problems on the hijra community in Bangladesh. \nConclusion: The conclusion also presents valuable recommendations for policy practitioners during the COVID-19 situation to support the hijra community. Hijra people are assumed to suffer under the severity of the pandemic even more than the general population due to the intersections between their status as a vulnerable social group, and their high amount of medical risk factors. The COVID-19 pandemic can potentiate these vulnerabilities, add new challenges for hijra individuals, leading to devastating consequences, like severe physical, and mental health issues."@en;
+    dc:location "Bangladesh"^^xsd:string;
+    dc:dateSubmitted "2021-03-25"^^xsd:date;
+    dc:created "2021-03-25"^^xsd:date;
+    dc:available "2021-03-25"^^xsd:date;
+    ex:hasContributor <http://orcid.org/0000-0001-9897-0870>
+}
