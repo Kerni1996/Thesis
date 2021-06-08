@@ -63,13 +63,13 @@ public class main {
 
 
         dict.put("creatorName","http://example.com/creatorName>");
-        dict.put("affiliation","http://example.com/affiliation");
+        dict.put("affiliation","https://schema.org/memberOf");
         dict.put("identifier","http://purl.org/dc/terms/identifier");
         dict.put("alternateIdentifier","http://www.w3.org/2004/02/skos/core#altLabel");
         dict.put("creator","http://purl.org/dc/terms/creator");
         dict.put("title","http://purl.org/dc/terms/title");
         dict.put("publisher","http://purl.org/dc/terms/publisher");
-        dict.put("publicationYear","http://example.com/publicationYear");
+        dict.put("publicationYear","http://purl.org/dc/terms/date");
         dict.put("subject","http://purl.org/dc/terms/subject");
         dict.put("contributorName","http://purl.org/dc/terms/contributor");
         dict.put("language","http://purl.org/dc/terms/language");
@@ -83,6 +83,7 @@ public class main {
         dict.put("date@dateType='Available'","http://purl.org/dc/terms/available");
         dict.put("date@dateType='Submitted'","http://purl.org/dc/terms/dateSubmitted");
         dict.put("date@dateType='Issued'","http://purl.org/dc/terms/issued");
+        dict.put("record","http://www.w3.org/1999/02/22-rdf-syntax-ns#type");
 
         //create Term objects with source name and output data name
 
@@ -126,7 +127,7 @@ public class main {
 
 */
 
-        LinkedList<String> exclusions = new LinkedList<String>(Arrays.asList("OAI-PMH", "responseDate", "request", "ListRecords","metadata", "formats", "rightsList", "contributors","resumptionToken", "geoLocations", "titles", "dates", "subjects", "creators", "record", "pointLatitude", "pointLongitude", "polygonPoint", "resource", "geoLocationPolygon", "contributor", "geoLocation", "descriptions", "header", "fundingReferences", "alternateIdentifiers","geoLocationPoint", "setSpec", "datestamp", "relatedIdentifiers"));
+        LinkedList<String> exclusions = new LinkedList<String>(Arrays.asList("OAI-PMH", "responseDate", "request", "ListRecords","metadata", "formats", "rightsList", "contributors","resumptionToken", "geoLocations", "titles", "dates", "subjects", "creators", "pointLatitude", "pointLongitude", "polygonPoint", "resource", "geoLocationPolygon", "contributor", "geoLocation", "descriptions", "header", "fundingReferences", "alternateIdentifiers","geoLocationPoint", "setSpec", "datestamp", "relatedIdentifiers"));
 
 
 
@@ -274,7 +275,7 @@ public class main {
             }
             System.out.println(terme);
             System.err.println("terms Not found: " + termsNotFound);
-            System.out.println(outMap);
+            //System.out.println(outMap);
             System.out.println("Number of valid terms:" + terme.size());
 
             //for (Node[] nx : nxp)
@@ -282,6 +283,12 @@ public class main {
                 //System.out.println(nx[0]);
         }catch (IOException e){
             e.printStackTrace();
+        }
+
+        for (int i =0 ; i<terme.size(); i++){
+            if (terme.get(i).getSourceOcurrence()!=terme.get(i).getOutputOcurrence()){
+                System.out.println("Ocurrences differ: " + terme.get(i));
+            }
         }
 
         /*
