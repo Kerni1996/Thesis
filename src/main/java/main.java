@@ -79,6 +79,10 @@ public class main {
         dict.put("description", "http://purl.org/dc/terms/description");
         dict.put("geoLocationPlace","http://purl.org/dc/terms/spatial");
         dict.put("relatedIdentifier", "http://purl.org/dc/terms/relation");
+        dict.put("date@dateType='Created'","http://purl.org/dc/terms/created");
+        dict.put("date@dateType='Available'","http://purl.org/dc/terms/available");
+        dict.put("date@dateType='Submitted'","http://purl.org/dc/terms/dateSubmitted");
+        dict.put("date@dateType='Issued'","http://purl.org/dc/terms/issued");
 
         //create Term objects with source name and output data name
 
@@ -116,6 +120,7 @@ public class main {
         terms.put("geoLocationPlace", new Term("geoLocationPlace","http://purl.org/dc/terms/location"));
         terms.put("relatedIdentifier", new Term("relatedIdentifier", "http://purl.org/dc/terms/source"));
 
+
         //todo distinct dates (created, available, etc.)
 
 
@@ -139,8 +144,26 @@ public class main {
             //HashMap<String, Integer> hashMap = new HashMap<String, Integer>();
             NodeList entries = document.getElementsByTagName("*");
             for (int i = 0; i < entries.getLength(); i++) {
+                Term term = null;
                 Element element = (Element) entries.item(i);
-                Term term =searchTermBySourceName(element.getNodeName());
+
+                //elements that are mapped based on their attributes are considered in the following if-loops
+                if (element.getAttribute("dateType").equals("Created")){
+                    term = searchTermBySourceName(element.getNodeName()+"@"+"dateType="+"'"+element.getAttribute("dateType")+"'");
+                    //System.out.println("Created date found, search term by Source Name: " + element.getNodeName()+"@"+"dateType="+"'"+element.getAttribute("dateType")+"'");
+                } else if (element.getAttribute("dateType").equals("Available")){
+                    term = searchTermBySourceName(element.getNodeName()+"@"+"dateType="+"'"+element.getAttribute("dateType")+"'");
+                    //System.out.println("Available date found, search term by Source Name: " + element.getNodeName()+"@"+"dateType="+"'"+element.getAttribute("dateType")+"'");
+                }else if (element.getAttribute("dateType").equals("Submitted")){
+                    term = searchTermBySourceName(element.getNodeName()+"@"+"dateType="+"'"+element.getAttribute("dateType")+"'");
+                    //System.out.println("Available date found, search term by Source Name: " + element.getNodeName()+"@"+"dateType="+"'"+element.getAttribute("dateType")+"'");
+                }else if (element.getAttribute("dateType").equals("Issued")){
+                    term = searchTermBySourceName(element.getNodeName()+"@"+"dateType="+"'"+element.getAttribute("dateType")+"'");
+                    //System.out.println("Available date found, search term by Source Name: " + element.getNodeName()+"@"+"dateType="+"'"+element.getAttribute("dateType")+"'");
+                }else {
+                    term = searchTermBySourceName(element.getNodeName());
+                }
+
 
                 if (term!=null){
                     term.incrementSourceOcurrence();
@@ -155,6 +178,7 @@ public class main {
                 {
                     if(!exclusions.contains(element.getNodeName())){
                         incrementTermsNotFoundCounter(element.getNodeName());
+                        System.out.println("Attributes: " + element.getAttribute("dateType"));
                         //System.err.println("Term with name: " + element.getNodeName() + " not found");
                     }
                 }
@@ -183,7 +207,7 @@ public class main {
 
 
         try {
-            FileInputStream is = new FileInputStream("src/main/resources/solve1.8.nq");
+            FileInputStream is = new FileInputStream("src/main/resources/solve1.9.nq");
 
             NxParser nxp = new NxParser();
             //nxp.parse(is);
