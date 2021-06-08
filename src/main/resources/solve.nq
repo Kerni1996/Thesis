@@ -35,3 +35,4 @@
 <oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/created> "2021-03-25"^^<http://www.w3.org/2001/XMLSchema#date> <record>.
 <oai:easy.dans.knaw.nl:easy-dataset:204554> <http://purl.org/dc/terms/available> "2021-03-25"^^<http://www.w3.org/2001/XMLSchema#date> <record>.
 <oai:easy.dans.knaw.nl:easy-dataset:204554> <http://example.com/hasContributor> <http://orcid.org/0000-0001-9897-0870> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:204554> <http://example.com/test> <http://orcid.org/0000-0001-9897-0870> <record>.

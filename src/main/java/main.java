@@ -24,6 +24,19 @@ public class main {
     //list to save terms and their information
     static LinkedList<Term> terme = new LinkedList();
 
+    //map to save terms that are not in the dictionary (either in source file or output file)
+    static HashMap<String, Integer> termsNotFound = new HashMap<String, Integer>();
+
+    static void incrementTermsNotFoundCounter(String term){
+        if (termsNotFound.containsKey(term)) {
+            int value = termsNotFound.get(term)+1;
+            termsNotFound.put(term,value);
+        }
+        else {
+            termsNotFound.put(term,1);
+        }
+    }
+
     static Term searchTermBySourceName(String sName){
         for (int i = 0; i<terme.size(); i++){
             Term term = terme.get(i);
@@ -52,7 +65,7 @@ public class main {
         dict.put("creatorName","http://example.com/creatorName>");
         dict.put("affiliation","http://example.com/affiliation");
         dict.put("identifier","http://purl.org/dc/terms/identifier");
-        dict.put("alternateIdentifier","http://purl.org/dc/terms/identifier");
+        dict.put("alternateIdentifier","http://www.w3.org/2004/02/skos/core#altLabel");
         dict.put("creator","http://purl.org/dc/terms/creator");
         dict.put("title","http://purl.org/dc/terms/title");
         dict.put("publisher","http://purl.org/dc/terms/publisher");
@@ -64,8 +77,8 @@ public class main {
         dict.put("format","http://purl.org/dc/terms/format");
         dict.put("rights","http://purl.org/dc/terms/rights");
         dict.put("description", "http://purl.org/dc/terms/description");
-        dict.put("geoLocationPlace","http://purl.org/dc/terms/location");
-        dict.put("relatedIdentifier", "http://purl.org/dc/terms/source");
+        dict.put("geoLocationPlace","http://purl.org/dc/terms/spatial");
+        dict.put("relatedIdentifier", "http://purl.org/dc/terms/relation");
 
         //create Term objects with source name and output data name
 
@@ -107,8 +120,8 @@ public class main {
 
 
 */
-        HashMap<String, Integer> termsNotFound = new HashMap<String, Integer>();
-        LinkedList<String> exclusions = new LinkedList<String>(Arrays.asList("OAI-PMH", "responseDate", "request", "ListRecords","metadata", "formats", "rightsList", "contributors","resumptionToken", "geoLocations", "titles", "dates", "subjects", "creators", "record", "pointLatitude", "pointLongitude", "polygonPoint", "resource", "geoLocationPolygon", "contributor", "geoLocation", "descriptions", "header", "fundingReferences", "alternateIdentifiers","geoLocationPoint", "setSpec", "datestamp"));
+
+        LinkedList<String> exclusions = new LinkedList<String>(Arrays.asList("OAI-PMH", "responseDate", "request", "ListRecords","metadata", "formats", "rightsList", "contributors","resumptionToken", "geoLocations", "titles", "dates", "subjects", "creators", "record", "pointLatitude", "pointLongitude", "polygonPoint", "resource", "geoLocationPolygon", "contributor", "geoLocation", "descriptions", "header", "fundingReferences", "alternateIdentifiers","geoLocationPoint", "setSpec", "datestamp", "relatedIdentifiers"));
 
 
 
@@ -136,16 +149,12 @@ public class main {
                 {
                     terms.get(element.getNodeName()+"@alternateIdentifierType="+element.getAttribute("alternateIdentifierType")).incrementSourceOcurrence();
                 }*/
+
+                //note down the terms that are unknown to the validation tool
                 else
                 {
                     if(!exclusions.contains(element.getNodeName())){
-                        if (termsNotFound.containsKey(element.getNodeName())) {
-                            int value = termsNotFound.get(element.getNodeName());
-                            termsNotFound.put(element.getNodeName(),value+=1);
-                        }
-                        else {
-                            termsNotFound.put(element.getNodeName(),1);
-                        }
+                        incrementTermsNotFoundCounter(element.getNodeName());
                         //System.err.println("Term with name: " + element.getNodeName() + " not found");
                     }
                 }
@@ -174,7 +183,7 @@ public class main {
 
 
         try {
-            FileInputStream is = new FileInputStream("src/main/resources/solve.nq");
+            FileInputStream is = new FileInputStream("src/main/resources/solve1.8.nq");
 
             NxParser nxp = new NxParser();
             //nxp.parse(is);
@@ -214,6 +223,15 @@ public class main {
                     terms.get("").incrementOutputOcurrence();
                 }
 */
+                //remove "<" before and ">" after predicate
+                String predicate = node[1].toString().substring(1,node[1].toString().length()-1);
+                Term term = searchTermByOutputName(predicate);
+                if (term!=null){
+                    term.incrementOutputOcurrence();
+                } else {
+                   // System.out.println("term not found: " + node[1].toString());
+                    incrementTermsNotFoundCounter(predicate);
+                }
 
 
 
@@ -228,10 +246,12 @@ public class main {
                     }
                     out+=node[1];
 
-                //System.out.println(out);
 
             }
+            System.out.println(terme);
+            System.err.println("terms Not found: " + termsNotFound);
             System.out.println(outMap);
+            System.out.println("Number of valid terms:" + terme.size());
 
             //for (Node[] nx : nxp)
                 // prints the subject, eg. <http://example.org/>
