@@ -64,9 +64,10 @@ public class main {
 
         dict.put("creatorName","http://example.com/creatorName>");
         dict.put("affiliation","https://schema.org/memberOf");
-        dict.put("identifier","http://purl.org/dc/terms/identifier");
         dict.put("alternateIdentifier","http://www.w3.org/2004/02/skos/core#altLabel");
         dict.put("creator","http://purl.org/dc/terms/creator");
+        dict.put("identifier","http://purl.org/dc/terms/identifier");
+        //title counter might deliver wrong values because in the mapping the literal is set to the language.. if no language appears in the source set, the title predicate is not created
         dict.put("title","http://purl.org/dc/terms/title");
         dict.put("publisher","http://purl.org/dc/terms/publisher");
         dict.put("publicationYear","http://purl.org/dc/terms/date");
@@ -76,6 +77,7 @@ public class main {
         dict.put("resourceType","http://purl.org/dc/terms/type");
         dict.put("format","http://purl.org/dc/terms/format");
         dict.put("rights","http://purl.org/dc/terms/rights");
+        //description counter might deliver wrong values because in the mapping the literal is set to the language.. if no language appears in the source set, the description predicate is not created
         dict.put("description", "http://purl.org/dc/terms/description");
         dict.put("geoLocationPlace","http://purl.org/dc/terms/spatial");
         dict.put("relatedIdentifier", "http://purl.org/dc/terms/relation");
@@ -83,6 +85,8 @@ public class main {
         dict.put("date@dateType='Available'","http://purl.org/dc/terms/available");
         dict.put("date@dateType='Submitted'","http://purl.org/dc/terms/dateSubmitted");
         dict.put("date@dateType='Issued'","http://purl.org/dc/terms/issued");
+        //BidiMap does not allow two equal values
+        //dict.put("identifier@identifierType='DOI'","http://purl.org/dc/terms/identifier");
         dict.put("record","http://www.w3.org/1999/02/22-rdf-syntax-ns#type");
 
         //create Term objects with source name and output data name
@@ -90,6 +94,9 @@ public class main {
         for (Map.Entry<String, String> entry:dict.entrySet()){
             terme.add(new Term(entry.getKey(), entry.getValue()));
         }
+
+        //System.out.println("Dict: " + dict);
+        //System.out.println("Terme before scrapping: " + terme.toString());
 
 
 
@@ -135,7 +142,7 @@ public class main {
 
         //source file
         try {
-            File file = new File("src/main/resources/source.xml");
+            File file = new File("src/main/resources/reference_short.xml");
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
             DocumentBuilder db = dbf.newDocumentBuilder();
@@ -152,7 +159,10 @@ public class main {
                 if (element.getAttribute("dateType").equals("Created")){
                     term = searchTermBySourceName(element.getNodeName()+"@"+"dateType="+"'"+element.getAttribute("dateType")+"'");
                     //System.out.println("Created date found, search term by Source Name: " + element.getNodeName()+"@"+"dateType="+"'"+element.getAttribute("dateType")+"'");
-                } else if (element.getAttribute("dateType").equals("Available")){
+                } /*else if (element.getAttribute("identifierType").equals("DOI")){
+                    term = searchTermBySourceName(element.getNodeName()+"@"+"identifierType="+"'"+element.getAttribute("identifierType")+"'");
+                    //System.out.println("Available date found, search term by Source Name: " + element.getNodeName()+"@"+"dateType="+"'"+element.getAttribute("dateType")+"'");
+                }*/else if (element.getAttribute("dateType").equals("Available")){
                     term = searchTermBySourceName(element.getNodeName()+"@"+"dateType="+"'"+element.getAttribute("dateType")+"'");
                     //System.out.println("Available date found, search term by Source Name: " + element.getNodeName()+"@"+"dateType="+"'"+element.getAttribute("dateType")+"'");
                 }else if (element.getAttribute("dateType").equals("Submitted")){
@@ -179,7 +189,9 @@ public class main {
                 {
                     if(!exclusions.contains(element.getNodeName())){
                         incrementTermsNotFoundCounter(element.getNodeName());
-                        System.out.println("Attributes: " + element.getAttribute("dateType"));
+                        System.err.println("Term not found:" + element.getNodeName());
+                        System.err.println(searchTermBySourceName(element.getNodeName()));
+                        //System.out.println("Attributes: " + element.getAttribute("dateType"));
                         //System.err.println("Term with name: " + element.getNodeName() + " not found");
                     }
                 }
@@ -208,7 +220,7 @@ public class main {
 
 
         try {
-            FileInputStream is = new FileInputStream("src/main/resources/solve1.9.nq");
+            FileInputStream is = new FileInputStream("src/main/resources/solve1.9_short.nq");
 
             NxParser nxp = new NxParser();
             //nxp.parse(is);

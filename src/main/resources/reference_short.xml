@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="static/oai-pmh.xsl"?>
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/
+                             http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+  <responseDate>2021-06-06T13:58:12Z</responseDate>
+  <request verb="ListRecords" metadataPrefix="oai_datacite">https://easy.dans.knaw.nl/oai/</request>
+<ListRecords>
+<record>
+  <header>
+    <identifier>oai:easy.dans.knaw.nl:easy-dataset:98501</identifier>
+    <datestamp>2021-04-15T16:48:49Z</datestamp>
+    <setSpec>D20000</setSpec>
+  </header>
+  <metadata>
+<resource xmlns="http://datacite.org/schema/kernel-4"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://datacite.org/schema/kernel-4 http://schema.datacite.org/meta/kernel-4.1/metadata.xsd">
+   <creators>
+      <creator>
+         <creatorName>Johnson, Pieter T. J.</creatorName>
+      </creator>
+      <creator>
+         <creatorName>Wilber, Mark Q.</creatorName>
+      </creator>
+   </creators>
+   <titles>
+      <title>Data from: Biological and statistical processes jointly drive population aggregation: using host–parasite interactions to understand Taylor's power law</title>
+   </titles>
+   <publisher>Data Archiving and Networked Services (DANS)</publisher>
+   <publicationYear>2017</publicationYear>
+   <subjects>
+      <subject subjectScheme="NARCIS-classification"
+               schemeURI="http://www.narcis.nl/classification"
+               valueURI="http://www.narcis.nl/classfication/D20000"
+               xml:lang="en">Life sciences, medicine and health care </subject>
+   </subjects>
+   <contributors/>
+   <fundingReferences/>
+   <dates>
+      <date dateType="Created">2017-08-16T15:40:17.000+02:00</date>
+      <date dateType="Available">2017-08-16T15:40:17.000+02:00</date>
+   </dates>
+   <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+   <alternateIdentifiers>
+      <alternateIdentifier alternateIdentifierType="DOI">10.5061/dryad.r08t9</alternateIdentifier>
+      <alternateIdentifier alternateIdentifierType="URN">urn:nbn:nl:ui:13-rj-hbv5</alternateIdentifier>
+      <alternateIdentifier alternateIdentifierType="DMO_ID">easy-dataset:98501</alternateIdentifier>
+   </alternateIdentifiers>
+   <relatedIdentifiers/>
+   <rightsList>
+      <rights>info:eu-repo/semantics/openAccess</rights>
+      <rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0">License: http://creativecommons.org/publicdomain/zero/1.0</rights>
+   </rightsList>
+   <descriptions>
+      <description descriptionType="Other">The macroecological pattern known as Taylor's power law (TPL) represents the pervasive tendency of the variance in population density to increase as a power function of the mean. Despite empirical illustrations in systems ranging from viruses to vertebrates, the biological significance of this relationship continues to be debated. Here we combined collection of a unique dataset involving 11 987 amphibian hosts and 332 684 trematode parasites with experimental measurements of core epidemiological outcomes to explicitly test the contributions of hypothesized biological processes in driving aggregation. After using feasible set theory to account for mechanisms acting indirectly on aggregation and statistical constraints inherent to the data, we detected strongly consistent influences of host and parasite species identity over 7 years of sampling. Incorporation of field-based measurements of host body size, its variance and spatial heterogeneity in host density accounted for host identity effects, while experimental quantification of infection competence (and especially virulence from the 20 most common host–parasite combinations) revealed the role of species-by-environment interactions. By uniting constraint-based theory, controlled experiments and community-based field surveys, we illustrate the joint influences of biological and statistical processes on parasite aggregation and emphasize their importance for understanding population regulation and ecological stability across a range of systems, both infectious and free-living.</description>
+   </descriptions>
+   <geoLocations/>
+</resource>
+  </metadata>
+</record>
+<resumptionToken cursor="0">X299124958/1</resumptionToken>
+</ListRecords>
+</OAI-PMH>

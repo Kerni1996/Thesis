@@ -1,0 +1,14 @@
+<oai:easy.dans.knaw.nl:easy-dataset:98501> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/dc/terms/Dataset> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:98501> <http://purl.org/dc/terms/identifier> <https://doi.org/> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:98501> <http://purl.org/dc/terms/publisher> "Data Archiving and Networked Services (DANS)"^^<http://www.w3.org/2001/XMLSchema#string> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:98501> <http://purl.org/dc/terms/date> "2017"^^<http://www.w3.org/2001/XMLSchema#gYear> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:98501> <http://purl.org/dc/terms/subject> "Life sciences, medicine and health care "^^<http://www.w3.org/2001/XMLSchema#string> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:98501> <http://purl.org/dc/terms/type> "Dataset"@en <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:98501> <http://www.w3.org/2004/02/skos/core#altLabel> <10.5061/dryad.r08t9> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:98501> <http://www.w3.org/2004/02/skos/core#altLabel> <urn:nbn:nl:ui:13-rj-hbv5> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:98501> <http://www.w3.org/2004/02/skos/core#altLabel> <easy-dataset:98501> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:98501> <http://purl.org/dc/terms/rights> "info:eu-repo/semantics/openAccess"^^<http://www.w3.org/2001/XMLSchema#string> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:98501> <http://purl.org/dc/terms/rights> "License: http://creativecommons.org/publicdomain/zero/1.0"^^<http://www.w3.org/2001/XMLSchema#string> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:98501> <http://purl.org/dc/terms/created> "2017-08-16T15:40:17.000+02:00"^^<http://www.w3.org/2001/XMLSchema#date> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:98501> <http://purl.org/dc/terms/available> "2017-08-16T15:40:17.000+02:00"^^<http://www.w3.org/2001/XMLSchema#date> <record>.
+<oai:easy.dans.knaw.nl:easy-dataset:98501> <http://purl.org/dc/terms/creator> <https://orcid.org/> <record>.
