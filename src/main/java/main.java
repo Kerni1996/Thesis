@@ -62,12 +62,15 @@ public class main {
 
 
 
-        dict.put("creatorName","http://example.com/creatorName>");
+        dict.put("creatorName", "http://xmlns.com/foaf/0.1/name");
+        dict.put("nameIdentifier","http://purl.org/dc/terms/creator");
         dict.put("affiliation","https://schema.org/memberOf");
         dict.put("alternateIdentifier","http://www.w3.org/2004/02/skos/core#altLabel");
-        dict.put("creator","http://purl.org/dc/terms/creator");
+        //dict.put("creator","http://purl.org/dc/terms/creator");
+        //TODO current mapping implementation creates identifier every time, not only if a identifier is present (dc:identifier), and the dans identifiers are not counted because they are the subjects
+
         dict.put("identifier","http://purl.org/dc/terms/identifier");
-        //title counter might deliver wrong values because in the mapping the literal is set to the language.. if no language appears in the source set, the title predicate is not created
+        //TODO: title counter might deliver wrong values because in the mapping the literal is set to the language.. if no language appears in the source set, the title predicate is not created
         dict.put("title","http://purl.org/dc/terms/title");
         dict.put("publisher","http://purl.org/dc/terms/publisher");
         dict.put("publicationYear","http://purl.org/dc/terms/date");
@@ -77,7 +80,7 @@ public class main {
         dict.put("resourceType","http://purl.org/dc/terms/type");
         dict.put("format","http://purl.org/dc/terms/format");
         dict.put("rights","http://purl.org/dc/terms/rights");
-        //description counter might deliver wrong values because in the mapping the literal is set to the language.. if no language appears in the source set, the description predicate is not created
+        //TODO: description counter might deliver wrong values because in the mapping the literal is set to the language.. if no language appears in the source set, the description predicate is not created
         dict.put("description", "http://purl.org/dc/terms/description");
         dict.put("geoLocationPlace","http://purl.org/dc/terms/spatial");
         dict.put("relatedIdentifier", "http://purl.org/dc/terms/relation");
@@ -88,6 +91,7 @@ public class main {
         //BidiMap does not allow two equal values
         //dict.put("identifier@identifierType='DOI'","http://purl.org/dc/terms/identifier");
         dict.put("record","http://www.w3.org/1999/02/22-rdf-syntax-ns#type");
+        //dict.put("nameIdentifier", )
 
         //create Term objects with source name and output data name
 
@@ -95,46 +99,9 @@ public class main {
             terme.add(new Term(entry.getKey(), entry.getValue()));
         }
 
-        //System.out.println("Dict: " + dict);
-        //System.out.println("Terme before scrapping: " + terme.toString());
 
 
-
-
-
-
-        /*
-        //create Term objects with corresponding sourceName and OutputName
-
-        HashMap<String, Term> terms = new HashMap<String, Term>();
-        terms.put("creatorName",new Term("creatorName","http://example.com/creatorName>"));
-        terms.put("affiliation", new Term ("affiliation","http://example.com/affiliation"));
-        //todo has several, identical outputNames
-        terms.put("identifier", new Term("identifier","http://purl.org/dc/terms/identifier"));
-        terms.put("alternateIdentifier", new Term("alternateIdentifier","http://purl.org/dc/terms/identifier"));
-
-
-        terms.put("creator",new Term("creator","http://purl.org/dc/terms/creator"));
-        terms.put("title",new Term("title","http://purl.org/dc/terms/title"));
-        terms.put("publisher",new Term("publisher","http://purl.org/dc/terms/publisher"));
-        terms.put("publicationYear",new Term("publicationYear","http://example.com/publicationYear"));
-        terms.put("subject", new Term("subject","http://purl.org/dc/terms/subject"));
-        terms.put("contributorName", new Term("contributorName","http://purl.org/dc/terms/contributor"));
-        terms.put("language", new Term("language","http://purl.org/dc/terms/language"));
-        terms.put("resourceType", new Term("resourceType","http://purl.org/dc/terms/type"));
-        terms.put("format", new Term("format","http://purl.org/dc/terms/format"));
-        terms.put("rights", new Term("rights","http://purl.org/dc/terms/rights"));
-        terms.put("description", new Term("description", "http://purl.org/dc/terms/description"));
-        terms.put("geoLocationPlace", new Term("geoLocationPlace","http://purl.org/dc/terms/location"));
-        terms.put("relatedIdentifier", new Term("relatedIdentifier", "http://purl.org/dc/terms/source"));
-
-
-        //todo distinct dates (created, available, etc.)
-
-
-*/
-
-        LinkedList<String> exclusions = new LinkedList<String>(Arrays.asList("OAI-PMH", "responseDate", "request", "ListRecords","metadata", "formats", "rightsList", "contributors","resumptionToken", "geoLocations", "titles", "dates", "subjects", "creators", "pointLatitude", "pointLongitude", "polygonPoint", "resource", "geoLocationPolygon", "contributor", "geoLocation", "descriptions", "header", "fundingReferences", "alternateIdentifiers","geoLocationPoint", "setSpec", "datestamp", "relatedIdentifiers"));
+        LinkedList<String> exclusions = new LinkedList<String>(Arrays.asList("OAI-PMH", "responseDate", "request", "ListRecords","metadata", "formats", "rightsList", "contributors","resumptionToken", "geoLocations", "titles", "dates", "subjects", "creators", "pointLatitude", "pointLongitude", "polygonPoint", "resource", "geoLocationPolygon", "contributor", "geoLocation", "descriptions", "header", "fundingReferences", "alternateIdentifiers","geoLocationPoint", "setSpec", "datestamp", "relatedIdentifiers", "creator"));
 
 
 
@@ -142,7 +109,8 @@ public class main {
 
         //source file
         try {
-            File file = new File("src/main/resources/reference_short.xml");
+            //File file = new File("src/main/resources/reference.xml");
+            File file = new File("src/main/resources/evaluation.xml");
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
             DocumentBuilder db = dbf.newDocumentBuilder();
@@ -176,7 +144,10 @@ public class main {
                 }
 
 
+
+
                 if (term!=null){
+
                     term.incrementSourceOcurrence();
                 }
                 /*else if (!element.getAttribute("alternateIdentifier").equals("") && terms.containsKey(element.getNodeName()+"@alternateIdentifierType="+element.getAttribute("alternateIdentifierType")))
@@ -190,7 +161,6 @@ public class main {
                     if(!exclusions.contains(element.getNodeName())){
                         incrementTermsNotFoundCounter(element.getNodeName());
                         System.err.println("Term not found:" + element.getNodeName());
-                        System.err.println(searchTermBySourceName(element.getNodeName()));
                         //System.out.println("Attributes: " + element.getAttribute("dateType"));
                         //System.err.println("Term with name: " + element.getNodeName() + " not found");
                     }
@@ -207,7 +177,7 @@ public class main {
                 }*/
 
             }
-            System.err.println("terms Not found: " + termsNotFound);
+            //System.err.println("terms Not found: " + termsNotFound);
             System.out.println(terme);
             //System.out.println(hashMap);
         } catch (ParserConfigurationException a) {
@@ -219,8 +189,12 @@ public class main {
         }
 
 
+        //List for counting subjects
+        LinkedList<String> subjects = new LinkedList<String>();
+
         try {
-            FileInputStream is = new FileInputStream("src/main/resources/solve1.9_short.nq");
+            //FileInputStream is = new FileInputStream("src/main/resources/solve2.1.nq");
+            FileInputStream is = new FileInputStream("src/main/resources/solve2.1_evaluation.nq");
 
             NxParser nxp = new NxParser();
             //nxp.parse(is);
@@ -229,39 +203,18 @@ public class main {
             HashMap<String, Integer> outMap = new HashMap<String, Integer>();
             for (Iterator<Node[]> it = nxp.parse(is);it.hasNext();){
                 Node[] node = it.next();
-                String out = "";
 
-
-
-                    //we are only interested in the predicate (second entry) => node[1]
-                    //if HashMap contains entry, increment by 1
-
-                /*if (node[1].toString().equals("")){
-                    terms.get("").incrementOutputOcurrence();
-                } else if (node[1].toString().equals("")) {
-                    terms.get("").incrementOutputOcurrence();
-                }else if (node[1].toString().equals("")) {
-                    terms.get("").incrementOutputOcurrence();
-                }else if (node[1].toString().equals("")) {
-                    terms.get("").incrementOutputOcurrence();
-                }else if (node[1].toString().equals("")) {
-                    terms.get("").incrementOutputOcurrence();
-                }else if (node[1].toString().equals("")) {
-                    terms.get("").incrementOutputOcurrence();
-                }else if (node[1].toString().equals("")) {
-                    terms.get("").incrementOutputOcurrence();
-                }else if (node[1].toString().equals("")) {
-                    terms.get("").incrementOutputOcurrence();
-                }else if (node[1].toString().equals("")) {
-                    terms.get("").incrementOutputOcurrence();
-                }else if (node[1].toString().equals("")) {
-                    terms.get("").incrementOutputOcurrence();
-                }else if (node[1].toString().equals("")) {
-                    terms.get("").incrementOutputOcurrence();
+                //remove "<" before and ">" after subject
+                String subject = node[0].toString().substring(1,node[0].toString().length()-1);
+                //if the subjcets appears for the first time, add to the list
+                if (!subjects.contains(subject)){
+                    subjects.add(subject);
                 }
-*/
                 //remove "<" before and ">" after predicate
                 String predicate = node[1].toString().substring(1,node[1].toString().length()-1);
+
+
+
                 Term term = searchTermByOutputName(predicate);
                 if (term!=null){
                     term.incrementOutputOcurrence();
@@ -281,10 +234,16 @@ public class main {
                     else {
                         outMap.put(node[1].toString(),1);
                     }
-                    out+=node[1];
 
 
             }
+
+            //the subjects are the dataset identifiers. so the number of "identifier" elements has to be increased by the number of distinct subjects (subjects list) in the "identifier" term
+            Term identifier = searchTermBySourceName("identifier");
+            for (int i = 0; i<subjects.size(); i++){
+                identifier.incrementOutputOcurrence();
+            }
+
             System.out.println(terme);
             System.err.println("terms Not found: " + termsNotFound);
             //System.out.println(outMap);
@@ -303,34 +262,7 @@ public class main {
             }
         }
 
-        /*
-
-        String fileNameOrUri = "src/main/resources/solve.nq";
-        Model model = ModelFactory.createDefaultModel();
-        InputStream is = FileManager.get().open(fileNameOrUri);
-        if (is != null) {
-            model.read(is, null, "N-TRIPLE");
-            model.write(System.out, "TURTLE");
-        } else {
-            System.err.println("cannot read " + fileNameOrUri);;
-        }
-    }
-    */
-
-    /*
-
-        Model model = ModelFactory.createDefaultModel();
-
-        //renamed file from ttl to .trig because it is actually a trig file
-        FileManager.get().readModel(model, "src/main/resources/output.trig");
-
-        System.out.println(model.listNameSpaces().toList().toString());
-        System.out.println(model.listObjects().toList().toString());
-        System.out.println(model.listStatements().toList().toString());
-        System.out.println(model.listSubjects().hasNext());
-        System.out.println(model.getReader().toString());
-        System.out.println(model.createList().toString());
-        */
+        System.out.println(subjects.size() + " subjects counted");
 
 
     }
