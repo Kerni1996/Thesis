@@ -67,10 +67,10 @@ public class main {
         dict.put("affiliation","https://schema.org/memberOf");
         dict.put("alternateIdentifier","http://www.w3.org/2004/02/skos/core#altLabel");
         //dict.put("creator","http://purl.org/dc/terms/creator");
-        //TODO current mapping implementation creates identifier every time, not only if a identifier is present (dc:identifier), and the dans identifiers are not counted because they are the subjects
+        //INFO: the dans identifiers are not counted because they are the subjects
 
         dict.put("identifier","http://purl.org/dc/terms/identifier");
-        //TODO: title counter might deliver wrong values because in the mapping the literal is set to the language.. if no language appears in the source set, the title predicate is not created
+        //INFO: title counter might deliver wrong values because in the mapping the literal is set to the language.. if no language appears in the source set, the title predicate is not created
         dict.put("title","http://purl.org/dc/terms/title");
         dict.put("publisher","http://purl.org/dc/terms/publisher");
         dict.put("publicationYear","http://purl.org/dc/terms/date");
@@ -80,7 +80,7 @@ public class main {
         dict.put("resourceType","http://purl.org/dc/terms/type");
         dict.put("format","http://purl.org/dc/terms/format");
         dict.put("rights","http://purl.org/dc/terms/rights");
-        //TODO: description counter might deliver wrong values because in the mapping the literal is set to the language.. if no language appears in the source set, the description predicate is not created
+        //INFO: description counter might deliver wrong values because in the mapping the literal is set to the language.. if no language appears in the source set, the description predicate is not created
         dict.put("description", "http://purl.org/dc/terms/description");
         dict.put("geoLocationPlace","http://purl.org/dc/terms/spatial");
         dict.put("relatedIdentifier", "http://purl.org/dc/terms/relation");
