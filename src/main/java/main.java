@@ -17,6 +17,15 @@ import java.util.*;
 
 public class main {
 
+    //counter variables for statistics
+    static int counterValidTerms = 0;
+    static int distinctExcludedTerms = 0;
+    static int totalNumberSuccessfullMappedTerms = 0;
+    static int totalNumberMappingError = 0;
+    //should be sum of all previous counter variables
+    static int totatlNumberSourceFileElements = 0;
+    static int implementationDifferences = 0;
+
     //use bidi map to be able to search for keys by value as well
     static BidiMap<String, String> dict=  new DualHashBidiMap<String, String>();
     //static HashMap<String, String> dict = new HashMap<String, String>();
@@ -35,6 +44,15 @@ public class main {
         else {
             termsNotFound.put(term,1);
         }
+    }
+
+    static void printStatistics(){
+        System.out.println("Statistics: ");
+        System.out.println("# successful mapped terms: " + totalNumberSuccessfullMappedTerms);
+        System.out.println("# mapping errors / terms unknown: " + totalNumberMappingError);
+        System.out.println("# terms not mapped due to implementation: " + implementationDifferences);
+        System.out.println("# excluded terms: " + distinctExcludedTerms);
+        System.out.println("# valid terms: " + counterValidTerms + " out of " + terme.size() + " terms.");
     }
 
     static Term searchTermBySourceName(String sName){
@@ -59,6 +77,7 @@ public class main {
 
 
     public static void main(String[] args) {
+
 
 
 
@@ -102,7 +121,7 @@ public class main {
 
 
         LinkedList<String> exclusions = new LinkedList<String>(Arrays.asList("OAI-PMH", "responseDate", "request", "ListRecords","metadata", "formats", "rightsList", "contributors","resumptionToken", "geoLocations", "titles", "dates", "subjects", "creators", "pointLatitude", "pointLongitude", "polygonPoint", "resource", "geoLocationPolygon", "contributor", "geoLocation", "descriptions", "header", "fundingReferences", "alternateIdentifiers","geoLocationPoint", "setSpec", "datestamp", "relatedIdentifiers", "creator"));
-
+        distinctExcludedTerms = exclusions.size();
 
 
 
@@ -120,6 +139,9 @@ public class main {
             //HashMap<String, Integer> hashMap = new HashMap<String, Integer>();
             NodeList entries = document.getElementsByTagName("*");
             for (int i = 0; i < entries.getLength(); i++) {
+
+                totatlNumberSourceFileElements++;
+
                 Term term = null;
                 Element element = (Element) entries.item(i);
 
@@ -141,6 +163,7 @@ public class main {
                     //System.out.println("Available date found, search term by Source Name: " + element.getNodeName()+"@"+"dateType="+"'"+element.getAttribute("dateType")+"'");
                 }else {
                     term = searchTermBySourceName(element.getNodeName());
+
                 }
 
 
@@ -149,6 +172,7 @@ public class main {
                 if (term!=null){
 
                     term.incrementSourceOcurrence();
+
                 }
                 /*else if (!element.getAttribute("alternateIdentifier").equals("") && terms.containsKey(element.getNodeName()+"@alternateIdentifierType="+element.getAttribute("alternateIdentifierType")))
                 {
@@ -161,6 +185,7 @@ public class main {
                     if(!exclusions.contains(element.getNodeName())){
                         incrementTermsNotFoundCounter(element.getNodeName());
                         System.err.println("Term not found:" + element.getNodeName());
+                        totalNumberMappingError++;
                         //System.out.println("Attributes: " + element.getAttribute("dateType"));
                         //System.err.println("Term with name: " + element.getNodeName() + " not found");
                     }
@@ -194,7 +219,7 @@ public class main {
 
         try {
             //FileInputStream is = new FileInputStream("src/main/resources/solve2.1.nq");
-            FileInputStream is = new FileInputStream("src/main/resources/solve2.1_evaluation.nq");
+            FileInputStream is = new FileInputStream("src/main/resources/solve.evaluationWithORCID.nq");
 
             NxParser nxp = new NxParser();
             //nxp.parse(is);
@@ -246,8 +271,11 @@ public class main {
 
             System.out.println(terme);
             System.err.println("terms Not found: " + termsNotFound);
+
             //System.out.println(outMap);
-            System.out.println("Number of valid terms:" + terme.size());
+            //System.out.println("Number of valid terms:" + terme.size());
+
+
 
             //for (Node[] nx : nxp)
                 // prints the subject, eg. <http://example.org/>
@@ -256,13 +284,22 @@ public class main {
             e.printStackTrace();
         }
 
+
         for (int i =0 ; i<terme.size(); i++){
             if (terme.get(i).getSourceOcurrence()!=terme.get(i).getOutputOcurrence()){
                 System.out.println("Ocurrences differ: " + terme.get(i));
+                implementationDifferences+=terme.get(i).getSourceOcurrence()-terme.get(i).getOutputOcurrence();
+            } else {
+                counterValidTerms++;
+                totalNumberSuccessfullMappedTerms+=terme.get(i).getOutputOcurrence();
             }
         }
 
         System.out.println(subjects.size() + " subjects counted");
+
+        printStatistics();
+
+
 
 
     }
